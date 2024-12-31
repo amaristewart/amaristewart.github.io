@@ -47,6 +47,23 @@ document.addEventListener("DOMContentLoaded", () => {
             item.onmouseover = () => {
               menu.dataset.activeIndex = index;
             }
+
+            const menuItems = document.querySelectorAll(".menu-item");
+
+            menuItems.forEach(item => {
+                item.addEventListener("click", event => {
+                    event.preventDefault();
+                    const targetId = item.getAttribute("href").slice(1); // Remove '#' from href
+                    const targetElement = document.getElementById(targetId);
+        
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: "smooth", // Enables smooth scrolling
+                            block: "start"      // Aligns the top of the section with the viewport
+                        });
+                    }
+                });
+            });
   });
     }
 
