@@ -2,28 +2,40 @@
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Hover effect for h2s
     const h2s = document.querySelectorAll("h2[data-value]");
-    console.log("Found h2s:", h2s.length); // Debug log
+    console.log("Found h2s:", h2s.length);
 
     if (h2s.length > 0) {
         h2s.forEach(element => {
             element.onmouseover = event => {
                 let iterations = 0;
-                
-                const interval = setInterval(() => {
-                    event.target.innerText = event.target.innerText.split("")
-                        .map((letter, index) => {
-                            if (index < iterations) {
-                                return event.target.dataset.value[index];
-                            }
-                            return letters[Math.floor(Math.random() * letters.length)];
-                        })
-                        .join("");
-                    
-                    if(iterations >= event.target.dataset.value.length) clearInterval(interval);
-                    
-                    iterations += 1 / 3;
-                }, 60);
+                let start = null;
+
+                function animate(timestamp) {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+
+                    // Update text every 60ms
+                    if (progress % 60 < 16) { // 16ms is roughly one frame
+                        event.target.innerText = event.target.innerText.split("")
+                            .map((letter, index) => {
+                                if (index < iterations) {
+                                    return event.target.dataset.value[index];
+                                }
+                                return letters[Math.floor(Math.random() * letters.length)];
+                            })
+                            .join("");
+                        
+                        iterations += 1/3;
+                    }
+
+                    if (iterations < event.target.dataset.value.length) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+
+                requestAnimationFrame(animate);
             }
         });
     }
