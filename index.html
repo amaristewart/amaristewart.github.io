@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio website of Amari Stewart, a Music Engineering Technology and Computer Engineering student, showcasing projects and contact information.">
     <title>Amari Stewart</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>Amari Stewart</h1>
+        <h1 class = "brand"> Amari Stewart</h1>
     </header>
 
     <div id="menu">
@@ -25,19 +26,23 @@
 
     <section id="about">
         <h2 data-value = "ABOUT ME">ABOUT ME</h2>
-        <p>I am currently a senior studying Music Engineering Technology and Computer Engineering at the University of Miami, delving deep into digital signal processing and audio software development. I am looking forward to pursuing a career in audio engineering to bring creativity and technical expertise to the field!</p>
+        <p>I am a senior studying Music Engineering Technology and Computer Engineering at the University of Miami. My passion lies in digital signal processing, audio software development, and bringing creative solutions to the audio engineering field!</p>
     </section>
 
     <section id="projects">
         <h2 data-value = "PROJECTS">PROJECTS</h2>
         <div class="project">
-            <h3>Project 1</h3>
-            <p>Description of project 1.</p>
+            <h3>The Plugin Lab</h3>
+            <p>My senior capstone project is designed to simplify audio plugin development with a user-friendly interface. Designed to provide customizable baseline algorithms for various audio effects for users to export and implement their plugins directly into their DAW of choice.
+            </p>
         </div>
         <div class="project">
-            <h3>Project 2</h3>
-            <p>Description of project 2.</p>
+            <h3>Vocal Denoiser Plugin</h3>
+            <p>Combined convolutional neural networks and traditional noise gates for effective speech detection and noise reduction.</p>
         </div>
+        <div class="project">
+            <h3>Audio Equalizer Plugin</h3>
+            <p>Developed an audio equalizer algorithm in MATLAB which was ported into a JUCE C++ plugin.</p>
         <!-- Add more projects as needed -->
     </section>
 
