@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestAnimationFrame(animate);
             }
         });
+
+        // Menu effect
+        const menu = document.getElementById("menu");
+
+        Array.from(document.getElementsByClassName("menu-item"))
+          .forEach((item, index) => {
+            item.onmouseover = () => {
+              menu.dataset.activeIndex = index;
+            }
+  });
     }
 
     // Trailer effect
@@ -78,13 +88,3 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Trailer element not found!");
     }
 });
-
-// Menu effect
-const menu = document.getElementById("menu");
-
-Array.from(document.getElementsByClassName("menu-item"))
-  .forEach((item, index) => {
-    item.onmouseover = () => {
-      menu.dataset.activeIndex = index;
-    }
-  });
