@@ -10,7 +10,7 @@ header {
     top: 0px;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #333;
+    background: rgb(51, 51, 51);
     color: white;
     padding: 1rem 2rem;
     display: flex;
@@ -44,11 +44,13 @@ h2 {
 }
 
 footer {
-    background-color: rgb(51, 51, 51);
+    background: rgb(51, 51, 51);
     color: white;
-    padding: 1rem;
+    padding: 1rem 0px;
     text-align: center;
     margin-top: 2rem;
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
 }
 
 #trailer {
@@ -120,12 +122,12 @@ body:hover #trailer {
   }
 
   #menu-items:hover ~ #menu-background-pattern {
-    background-size: 11vmin 11vmin;
+    background-size: 5.5vmin 5.5vmin;
     opacity: 0.5;
   }
   
   #menu-items:hover ~ #menu-background-image {
-    background-size: 100vmax;
+    background-size: 50vmax;
     opacity: 0.1;
   }
   
@@ -142,7 +144,7 @@ body:hover #trailer {
     cursor: pointer;
     display: block;
     font-family: "Georgia";
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-size: clamp(1.5rem, 4vw, 4rem);
     padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
     text-decoration: none;
     transition: opacity 400ms ease;
