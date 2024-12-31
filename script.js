@@ -1,25 +1,27 @@
 // Hover effect
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-document.querySelector("h2").onmouseover = event => {
-  let iterations = 0;
-  
-  const interval = setInterval(() => {
-    event.target.innerText = event.target.innerText.split("")
-      .map((letter, index) => {
-      if (index < iterations) {
-        return event.target.dataset.value[index];
-      }
+document.querySelector("h2[data-value]").forEachElement(element => {
+  element.onmouseover = event => {
+    let iterations = 0;
+    
+    const interval = setInterval(() => {
+      event.target.innerText = event.target.innerText.split("")
+        .map((letter, index) => {
+        if (index < iterations) {
+          return event.target.dataset.value[index];
+        }
+        
+        return letters[Math.floor(Math.random() * letters.length)];
+      })
+        .join("");
       
-      return letters[Math.floor(Math.random() * letters.length)];
-    })
-      .join("");
-    
-    if(iterations >= event.target.dataset.value.length) clearInterval(interval);
-    
-    iterations += 1 / 3;
-  }, 60);
-}
+      if(iterations >= event.target.dataset.value.length) clearInterval(interval);
+      
+      iterations += 1 / 3;
+    }, 60);
+  }
+});
 
 // Trailer effect
 const trailer = document.getElementById("trailer");
@@ -29,7 +31,7 @@ const animateTrailer = (e, interacting) => {
           y = e.clientY - trailer.offsetHeight / 2;
     
     const keyframes = {
-        transform: `translate(${x}px, ${y}px) scale ${interacting ? 1.5 : 1}`
+        transform: `translate(${x}px, ${y}px) scale ${interacting ? 1.5 : 1})`
     }
 
     trailer.animate(keyframes, {
