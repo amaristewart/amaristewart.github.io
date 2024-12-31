@@ -3,6 +3,7 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 document.querySelector("h2[data-value]").forEachElement(element => {
   element.onmouseover = event => {
+    console.log("Hover detected");
     let iterations = 0;
     
     const interval = setInterval(() => {
@@ -50,6 +51,7 @@ const getTrailerClass = type => {
 }
 
 window.onmousemove = e => {
+    console.log("Mouse moving");
     const interactable = e.target.closest(".interactable");
           interacting = interactable !== null;
 
