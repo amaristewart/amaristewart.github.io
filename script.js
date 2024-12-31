@@ -1,28 +1,54 @@
 // Hover effect
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-document.querySelector("h2[data-value]").forEachElement(element => {
-  element.onmouseover = event => {
-    console.log("Hover detected");
-    let iterations = 0;
+// document.querySelector("h2[data-value]").forEachElement(element => {
+//   element.onmouseover = event => {
+//     console.log("Hover detected");
+//     let iterations = 0;
     
-    const interval = setInterval(() => {
-      event.target.innerText = event.target.innerText.split("")
-        .map((letter, index) => {
-        if (index < iterations) {
-          return event.target.dataset.value[index];
-        }
+//     const interval = setInterval(() => {
+//       event.target.innerText = event.target.innerText.split("")
+//         .map((letter, index) => {
+//         if (index < iterations) {
+//           return event.target.dataset.value[index];
+//         }
         
-        return letters[Math.floor(Math.random() * letters.length)];
-      })
-        .join("");
+//         return letters[Math.floor(Math.random() * letters.length)];
+//       })
+//         .join("");
       
-      if(iterations >= event.target.dataset.value.length) clearInterval(interval);
+//       if(iterations >= event.target.dataset.value.length) clearInterval(interval);
       
-      iterations += 1 / 3;
-    }, 60);
-  }
-});
+//       iterations += 1 / 3;
+//     }, 60);
+//   }
+// });
+
+const h2s = document.querySelectorAll("h2[data-value]");
+console.log("Found h2s:", h2s.length); // Debug log
+
+if (h2s.length > 0) {
+  h2s.forEach(element => {
+    element.onmouseover = event => {
+      let iterations = 0;
+      
+      const interval = setInterval(() => {
+        event.target.innerText = event.target.innerText.split("")
+          .map((letter, index) => {
+            if (index < iterations) {
+              return event.target.dataset.value[index];
+            }
+            return letters[Math.floor(Math.random() * letters.length)];
+          })
+          .join("");
+        
+        if(iterations >= event.target.dataset.value.length) clearInterval(interval);
+        
+        iterations += 1 / 3;
+      }, 60);
+    }
+  });
+}
 
 // Trailer effect
 const trailer = document.getElementById("trailer");
