@@ -30,10 +30,10 @@ body:hover #trailer {
 }
 
 #menu {  
-    align-items: center;
+    align-items: left;
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    height: 50vh;
+    width: 50vw;
   }
   
   #menu-items {
