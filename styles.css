@@ -75,7 +75,7 @@ body:hover #trailer {
     width: 100vw;
     z-index: 1;
   }
-  
+
   #menu-items:hover ~ #menu-background-pattern {
     background-size: 11vmin 11vmin;
     opacity: 0.5;
@@ -98,7 +98,7 @@ body:hover #trailer {
     color: white;
     cursor: pointer;
     display: block;
-    font-family: 'Georgia';
+    font-family: "Georgia";
     font-size: clamp(3rem, 8vw, 8rem);
     padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
     text-decoration: none;
