@@ -95,15 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const getTrailerClass = type => {
-            switch(type) {
-                case "video":
-                    return "fa-solid fa-play";
-                default:
-                    return "fa-solid fa-circle";
-            }
-        }
-
         window.onmousemove = e => {
             const interactable = e.target.closest(".interactable");
             const interacting = interactable !== null;
