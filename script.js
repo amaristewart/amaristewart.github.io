@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 case "video":
                     return "fa-solid fa-play";
                 default:
-                    return "fa-solid fa-image";
+                    return "fa-solid fa-circle";
             }
         }
 
