@@ -1,13 +1,12 @@
 // Hover effect
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Hover effect for h2s
-    const h2s = document.querySelectorAll("h2[data-value]");
-    console.log("Found h2s:", h2s.length);
+    const as = document.querySelectorAll("a[data-value]");
+    console.log("Found as:", as.length);
 
-    if (h2s.length > 0) {
-        h2s.forEach(element => {
+    if (as.length > 0) {
+        as.forEach(element => {
             element.onmouseover = event => {
                 let iterations = 0;
                 let start = null;
@@ -16,8 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (!start) start = timestamp;
                     const progress = timestamp - start;
 
-                    // Update text every 60ms
-                    if (progress % 60 < 16) { // 16ms is roughly one frame
+                    if (progress % 60 < 16) {
                         event.target.innerText = event.target.innerText.split("")
                             .map((letter, index) => {
                                 if (index < iterations) {
@@ -53,13 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
             menuItems.forEach(item => {
                 item.addEventListener("click", event => {
                     event.preventDefault();
-                    const targetId = item.getAttribute("href").slice(1); // Remove '#' from href
+                    const targetId = item.getAttribute("href");
                     const targetElement = document.getElementById(targetId);
         
                     if (targetElement) {
                         targetElement.scrollIntoView({
-                            behavior: "smooth", // Enables smooth scrolling
-                            block: "start"      // Aligns the top of the section with the viewport
+                            behavior: "smooth",
+                            block: "start"  
                         });
                     }
                 });
