@@ -1,4 +1,4 @@
-/* body {
+body {
     font-family: "Georgia";
     margin-left: 150px;
     padding: 20px;
@@ -11,30 +11,15 @@
     background-position: 0% 0%;
     transition: background-positon 350ms ease;
     background-color: var(--bg-color);
-} */
-
-body {
-    font-family: "Georgia";
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    min-height: 100vh;
-    background-image: radial-gradient(
-        rgba(255, 255, 255, 0.1) 9%,
-        transparent 9%
-    );
-    background-position: 0% 0%;
-    background-size: 12vmin 12vmin;
-    transition: background-position 350ms ease;
-    display: flex;  /* Add flex display */
-}
+    display: flex;
+} 
 
 :root {
     --bg-color: rgb(20, 20, 20);
     --card-color: rgb(23, 23, 23);
   }
 
-/* header {
+  header {
     position: fixed;
     top: 0;
     left: 0;
@@ -48,20 +33,7 @@ body {
     justify-content: center;
     padding: 2rem;
     z-index: 1000;
-} */
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 150px;
-    background: #333;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-}
+} 
 
 .brand {
     text-align: center;
@@ -83,13 +55,9 @@ main {
     width: calc(100% - 150px);
 }
 
-/* section {
-    margin: 2rem 20px;
-    max-width: calc(100% - 170px);
-} */
-
 section {
-    margin: 2 rem 0;
+    margin: 2rem 20px;
+    max-width: calc(100% - 150px);
 }
 
 footer {
@@ -122,24 +90,20 @@ body:hover #trailer {
     opacity: 1;
 }
 
-/* #menu {
+#menu {
     position: fixed;
     top: 150px;
     left: 0;
     width: 150px;
     z-index: 100;
-} */
-
-#menu{
-    width: 150px;
-}
+} 
 
 #menu-items {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    /* padding-top: 2rem; */
+     padding-top: 2rem;
 }
 
 .menu-item {

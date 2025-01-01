@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menuItems.forEach(item => {
                 item.addEventListener("click", event => {
                     event.preventDefault();
-                    const targetId = item.getAttribute("href");
+                    const targetId = item.getAttribute("href").slice(1);
                     const targetElement = document.getElementById(targetId);
         
                     if (targetElement) {
