@@ -1,7 +1,7 @@
 body {
     font-family: "Georgia";
     margin: 0px;
-    background-color: rgb(244, 244, 244);
+    /* background-color: rgb(244, 244, 244); */
     color: rgb(51, 51, 51);
     display: flex;
     flex-direction: row;
