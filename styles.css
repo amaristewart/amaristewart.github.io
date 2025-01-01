@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: "Georgia";
     margin-left: 150px;
     padding: 20px;
@@ -11,6 +11,22 @@ body {
     background-position: 0% 0%;
     transition: background-positon 350ms ease;
     background-color: var(--bg-color);
+} */
+
+body {
+    font-family: "Georgia";
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.1) 9%,
+        transparent 9%
+    );
+    background-position: 0% 0%;
+    background-size: 12vmin 12vmin;
+    transition: background-position 350ms ease;
+    display: flex;  /* Add flex display */
 }
 
 :root {
@@ -18,7 +34,7 @@ body {
     --card-color: rgb(23, 23, 23);
   }
 
-header {
+/* header {
     position: fixed;
     top: 0;
     left: 0;
@@ -32,11 +48,24 @@ header {
     justify-content: center;
     padding: 2rem;
     z-index: 1000;
+} */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 150px;
+    background: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
 }
 
 .brand {
     text-align: center;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
     margin-bottom: 2rem;
 }
 
@@ -47,9 +76,20 @@ h1, h2, h3, h4, span {
     margin: 0px;
 }
 
-section {
+main {
+    margin-left: 150px;
+    padding: 2rem;
+    flex: 1;
+    width: calc(100% - 150px);
+}
+
+/* section {
     margin: 2rem 20px;
     max-width: calc(100% - 170px);
+} */
+
+section {
+    margin: 2 rem 0;
 }
 
 footer {
@@ -82,12 +122,16 @@ body:hover #trailer {
     opacity: 1;
 }
 
-#menu {
+/* #menu {
     position: fixed;
     top: 150px;
     left: 0;
     width: 150px;
     z-index: 100;
+} */
+
+#menu{
+    width: 150px;
 }
 
 #menu-items {
@@ -95,7 +139,7 @@ body:hover #trailer {
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
 }
 
 .menu-item {
@@ -111,6 +155,7 @@ body:hover #trailer {
     color: #1e90ff;
     background-color: rgba(255, 255, 255, 0.1);
 }
+
   
 #cards {
 display: flex;
@@ -180,13 +225,6 @@ inset: 1px;
 padding: 10px;
 position: absolute;
 z-index: 2;
-}
-
-h1, h2, h3, h4, span {
-color: rgb(240, 240, 240);
-font-family: "Georgia";
-font-weight: 400;
-margin: 0px;
 }
 
 i {  
