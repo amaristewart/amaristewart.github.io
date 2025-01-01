@@ -77,8 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.setProperty("--mouse-y", `${y}px`);
           };
         }
-      });
-      // Trailer effect
+  });
+    }
+    
+    // Trailer effect
     const trailer = document.getElementById("trailer");
 
     if (trailer) {
@@ -106,6 +108,4 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Trailer element not found!");
     }
-  }
-    
 });
