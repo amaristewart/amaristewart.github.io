@@ -29,12 +29,14 @@ header {
 }
 
 h1 {
+    font-family: "Georgia";
     font-size: 1.8rem;
     margin: 0px;
 }
 
 h2 {
-    color: rgb(51, 51, 51);
+    font-family: "Georgia";
+    color: #fff;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
