@@ -44,9 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
           .forEach((item, index) => {
             item.onmouseover = () => {
               menu.dataset.activeIndex = index;
+
+              const position = index * 10;
+              document.body.style.backgroundPosition = `${position}% ${position}%`;
             }
 
-            const menuItems = document.querySelectorAll(".menu-item");
+            // const menuItems = document.querySelectorAll(".menu-item");
 
             menuItems.forEach(item => {
                 item.addEventListener("click", event => {
