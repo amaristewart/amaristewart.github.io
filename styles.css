@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: "Georgia";
     margin: 0px;
     background-color: rgb(244, 244, 244);
@@ -11,7 +11,7 @@ body {
     );
     background-size: 12vmin 12vmin;
     background-position: 0% 0%;
-}
+} */
 
 header {
     position: fixed;
