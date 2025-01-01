@@ -49,11 +49,11 @@ h1, h2, h3, h4, span {
 }
 
 main {
-    margin-left: 150px;
+    /* margin-left: 150px;
     padding: 2rem;
     flex: 1;
     width: calc(100% - 150px);
-}
+} */
 
 section {
     margin: 2rem 20px;
