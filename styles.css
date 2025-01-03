@@ -1,6 +1,7 @@
 body {
     font-family: "Georgia";
     margin: 0px;
+    margin-left: 150px;
     min-height: 100vh;
     background-image: radial-gradient(
         rgba(255, 255, 255, 0.1) 9%,
@@ -33,6 +34,7 @@ body {
     justify-content: flex-start;
     padding: 2rem;
     z-index: 1000;
+    margin-left:-150px; 
 } 
 
 .brand {
