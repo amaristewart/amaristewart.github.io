@@ -8,7 +8,9 @@ body {
     );
     background-size: 12vmin 12vmin;
     background-position: 0% 0%;
-    transition: background-positon 350ms ease;
+    transition: opacity 800ms ease, 
+                background-size 800ms ease,
+                background-position 800ms ease;
     background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
@@ -46,13 +48,6 @@ h1, h2, h3, h4, span {
     margin: 0px;
 }
 
-/* main { 
-    /* margin-left: 150px;
-    padding: 2rem;
-    flex: 1;
-    width: calc(100% - 150px);
-} */
-
 section {
     margin: 2rem 20px;
     max-width: calc(100% - 150px);
@@ -89,8 +84,8 @@ body:hover #trailer {
 }
 
 #menu {
-    position: fixed;
-    width: 100px;
+    position: absolute;
+    width: 13vw;
     height: 100vh;
     top: 100px;
     z-index: 100;
@@ -103,26 +98,53 @@ body:hover #trailer {
 #menu-items {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 8rem;
     width: 100%;
     padding-top: 2rem;
+    z-index: 2;
 }
 
 .menu-item {
-    text-decoration: none;
     color: #fff;
+    cursor: pointer;
+    display: block;
     font-size: 1rem;
+    padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
     text-align: center;
-    padding: 0.5rem;
-    transition: color 0.3s, background-color 0.3s;
-}
+    text-decoration: none;
+    transition: opacity 400ms ease;
+  }
+
+  #menu[data-active-index="0"] > #menu-background-pattern {
+    background-position: 0% -34%;
+  }
+  
+  #menu[data-active-index="1"] > #menu-background-pattern {
+    background-position: 0% -68%;
+  }
+  
+  #menu[data-active-index="2"] > #menu-background-pattern {
+    background-position: 0% -100%;
+  }
 
 .menu-item:hover {
     color: #1e90ff;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+#menu-items:hover ~ #menu-background-pattern {
+    background-size: 11vmin 11vmin;
+    opacity: 0.5;
+  }
   
+  #menu-items:hover > .menu-item {
+    opacity: 0.3;
+  }
+  
+  #menu-items:hover > .menu-item:hover {
+    opacity: 1; 
+  }
+
 #cards {
 display: flex;
 flex-wrap: wrap;
