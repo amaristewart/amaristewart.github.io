@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (progress % 60 < 16) {
                         event.target.innerText = event.target.innerText.split("")
-                            .map((letter, index) => {
+                            .map((letters, index) => {
                                 if (index < iterations) {
                                     return event.target.dataset.value[index];
                                 }
