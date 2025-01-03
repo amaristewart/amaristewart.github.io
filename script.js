@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
               document.body.style.backgroundPosition = `${position}% ${position}%`;
             }
 
-            // const menuItems = document.querySelectorAll(".menu-item");
+            const menuItems = document.querySelectorAll(".menu-item");
 
             menuItems.forEach(item => {
                 item.addEventListener("click", event => {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
   });
     }
-    
+
     // Trailer effect
     const trailer = document.getElementById("trailer");
 
