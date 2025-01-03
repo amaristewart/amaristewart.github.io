@@ -21,6 +21,10 @@ body {
     flex-direction: column;
 } 
 
+i {
+    font-size: 1.5rem;
+}
+
 /* Desktop header*/
 @media (min-width: 1001px){
     header {
@@ -39,7 +43,7 @@ body {
     }
 }
 
-.brand {
+.name {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.5rem;
@@ -414,4 +418,9 @@ section {
     .menu-item:active {
         opacity: 1;
     }
+}
+
+.pdf {
+    width: 100%;
+    aspect-ratio: 4 / 3;
 }
