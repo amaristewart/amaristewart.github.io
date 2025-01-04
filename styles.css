@@ -74,6 +74,7 @@ i {
         padding: 2rem;
         z-index: 1000;
         margin-left: -225px; 
+        text-decoration: none;
     }
 }
 
@@ -111,7 +112,7 @@ footer {
 /* Desktop menu */
 @media (min-width: 1001px){
     #menu {
-        position: absolute;;
+        position: absolute;
         width: 13vw;
         height: 100vh;
         top: 100px;
@@ -186,7 +187,7 @@ background-color: rgba(255, 255, 255, 0.2);
 border-radius: 10px;
 cursor: pointer;
 display: flex;
-height: 3000px;
+height: 300px;
 flex-direction: column;
 position: relative;
 width: 346px;  
