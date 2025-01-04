@@ -187,10 +187,10 @@ background-color: rgba(255, 255, 255, 0.2);
 border-radius: 10px;
 cursor: pointer;
 display: flex;
-height: 300px;
+height: 275px;
 flex-direction: column;
 position: relative;
-width: 346px;  
+width: 317px;  
 }
 
 .card:hover::before {
@@ -451,5 +451,5 @@ section {
 
 .pdf {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1.41;
 }
