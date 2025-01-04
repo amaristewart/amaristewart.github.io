@@ -82,7 +82,7 @@ i {
     font-size: 1.5rem;
 }
 
-h1, h2, h3, h4, footer, span {
+h1, h2, h3, h4, a, footer, span {
     font-family: 'Courier New', monospace;
     color: rgb(240, 240, 240);
     font-weight: 400;
@@ -242,7 +242,6 @@ color: rgb(240, 240, 240);
 }
 
 .card-image {
-align-items: center;
 display: flex;
 height: 140px;
 justify-content: center;
