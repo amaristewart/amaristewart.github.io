@@ -374,7 +374,8 @@ section {
         z-index: 1000;
     }
 
-    .brand {
+    .name {
+        margin-top: -1rem;
         margin-bottom: 0;
         font-size: 1.25rem;
     }
