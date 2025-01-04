@@ -144,18 +144,14 @@ footer {
   }
 
   #menu[data-active-index="0"] > #menu-background-pattern {
-    background-position: 0% -25%;
+    background-position: 0% -33%;
   }
   
   #menu[data-active-index="1"] > #menu-background-pattern {
-    background-position: 0% -50%;
+    background-position: 0% -66%;
   }
   
   #menu[data-active-index="2"] > #menu-background-pattern {
-    background-position: 0% -75%;
-  }
-
-  #menu[data-active-index="3"] > #menu-background-pattern {
     background-position: 0% -100%;
   }
 
