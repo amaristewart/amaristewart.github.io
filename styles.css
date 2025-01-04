@@ -453,3 +453,24 @@ section {
     width: 100%;
     aspect-ratio: 1 / 1.41;
 }
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #333333 #595959;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #595959;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 10px;
+    border: 1px none #000000;
+  }
