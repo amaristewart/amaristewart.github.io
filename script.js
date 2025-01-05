@@ -1,42 +1,4 @@
-// Hover effect
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
 document.addEventListener("DOMContentLoaded", () => {
-    const as = document.querySelectorAll("a[data-value]");
-    console.log("Found as:", as.length);
-
-    if (as.length > 0) {
-        as.forEach(element => {
-            element.onmouseover = event => {
-                let iterations = 0;
-                let start = null;
-
-                function animate(timestamp) {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-
-                    if (progress % 60 < 16) {
-                        event.target.innerText = event.target.innerText.split("")
-                            .map((letters, index) => {
-                                if (index < iterations) {
-                                    return event.target.dataset.value[index];
-                                }
-                                return letters[Math.floor(Math.random() * letters.length)];
-                            })
-                            .join("");
-                        
-                        iterations += 1/3;
-                    }
-
-                    if (iterations < event.target.dataset.value.length) {
-                        requestAnimationFrame(animate);
-                    }
-                }
-
-                requestAnimationFrame(animate);
-            }
-        });
-
         // Menu effect
         const menu = document.getElementById("menu");
 
@@ -78,5 +40,4 @@ document.addEventListener("DOMContentLoaded", () => {
           };
         }
   });
-    }
 });
