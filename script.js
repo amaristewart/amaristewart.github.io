@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Modal effect
-
         const modal = document.getElementById("modal");
         const closeBtn = modal.querySelector(".close");
         const carousel = modal.querySelector(".carousel");
@@ -63,23 +62,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     carousel.appendChild(imgElement);
                 });
 
-                modal.classList.add("open");
+                modal.style.display = "flex"; 
+                modal.classList.remove("close"); 
+                modal.classList.add("open"); 
             });
         });
 
         closeBtn.addEventListener("click", () => {
-            modal.classList.remove("open");
-            modal.classList.add("close"); 
+            modal.classList.remove("open"); 
+            modal.classList.add("close");
             setTimeout(() => {
-                modal.style.display = "none";
-                modal.classList.remove("close");
-            }, 500); 
+                modal.style.display = "none"; 
+                modal.classList.remove("close"); 
+            }, 500);
         });
 
         window.addEventListener("click", (e) => {
             if (e.target === modal) {
-                closeBtn.click();
+                closeBtn.click(); 
             }
         });
-  });
+    });
 });
