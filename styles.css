@@ -551,6 +551,11 @@ section {
     margin: 10px 0;
 }
 
+.modal-info {
+    color: rgb(240, 240, 240);
+    font-family: 'Courier New', monospace;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
