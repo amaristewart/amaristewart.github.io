@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const position = index * 10;
               document.body.style.backgroundPosition = `${position}% ${position}%`;
             }
+        });
 
             const menuItems = document.querySelectorAll(".menu-item");
 
@@ -82,5 +83,4 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeBtn.click(); 
             }
         });
-    });
 });
