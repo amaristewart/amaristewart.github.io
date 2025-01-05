@@ -109,7 +109,7 @@ footer {
 
 }
 
-/* Desktop menu */
+/* Desktop menu and pdf*/
 @media (min-width: 1001px){
     #menu {
         position: absolute;
@@ -131,6 +131,12 @@ footer {
         padding-top: 2rem;
         z-index: 2;
         font-family: 'Courier New', monospace;
+    }
+
+    .pdf {
+        width: 790;
+        height: 1015;
+        aspect-ratio: 1 / 1.41;
     }
 }
 
