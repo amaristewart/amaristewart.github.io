@@ -513,12 +513,12 @@ section {
     initial-value: 0%;
   }
   
-  a:hover {
+  a >.animation:hover {
     color: rgba(240, 240, 240, 0.5);
     --fill: 100%;
   }
   
-  a::after {
+  a >.animation::after {
     position: absolute;
     z-index: -1;
     content: "";
