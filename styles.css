@@ -132,6 +132,10 @@ footer {
         z-index: 2;
         font-family: 'Courier New', monospace;
     }
+
+    embed {
+        width: 60%;
+    }
 }
 
 .menu-item {
@@ -423,6 +427,10 @@ section {
         height: "505";
         aspect-ratio: 1 / 1.41;
     }
+
+    embed {
+        width: 100%;
+    }
 }
 
 /* Small mobile optimizations */
@@ -463,10 +471,6 @@ section {
 .pdf {
     aspect-ratio: 1 / 1.41;
 }
-
-embed {
-    width: 100%;
-  }
 
 /* Firefox */
 * {
