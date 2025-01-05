@@ -420,6 +420,7 @@ section {
 
     .pdf {
         width: "395";
+        height: "505";
         aspect-ratio: 1 / 1.41;
     }
 }
