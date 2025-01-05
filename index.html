@@ -36,7 +36,8 @@
     <section id="projects">
         <h2><b>PROJECTS</b></h2>
         <div id="cards">
-            <div class="card">
+            <div class="card" data-title="The Plugin Lab" data-description="Designed to simplify audio plugin development with a user-friendly interface. Provides customizable baseline algorithms for various audio effects for users to export their plugins directly into their DAW of choice."
+            data-images="photo1.jpg,photo2.jpg,photo3.jpg">
               <div class="card-content">
                 <div class="card-image">
                 </div>
@@ -50,7 +51,8 @@
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" data-title="Vocal Denoiser Plugin" data-description="Combined convolutional neural networks and traditional noise gates for effective speech detection and noise reduction."
+            data-images="photo1.jpg,photo2.jpg,photo3.jpg">
               <div class="card-content">
                 <div class="card-image">
                 </div>
@@ -64,7 +66,8 @@
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" data-title="Audio Equalizer Plugin data-description="Developed an audio equalizer algorithm in MATLAB which was ported into a JUCE C++ plugin."
+            data-images="photo1.jpg,photo2.jpg,photo3.jpg">
               <div class="card-content">
                 <div class="card-image">
                 </div>
@@ -80,6 +83,21 @@
             </div>
           </div>
     </section>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="carousel">
+              <img src="photo1.jpg" alt="Slide 1" class="carousel-slide active">
+              <img src="photo2.jpg" alt="Slide 2" class="carousel-slide">
+              <img src="photo3.jpg" alt="Slide 3" class="carousel-slide">
+          </div>
+          <div class="modal-info">
+              <h3>Project Title</h3>
+              <p>Additional details about the project go here.</p>
+          </div>
+      </div>
+  </div>
 
     <section id="resume">
       <h2><b>RESUME</b></h2>

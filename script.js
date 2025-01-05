@@ -39,5 +39,47 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.setProperty("--mouse-y", `${y}px`);
           };
         }
+
+        // Modal effect
+
+        const modal = document.getElementById("modal");
+        const closeBtn = modal.querySelector(".close");
+        const carousel = modal.querySelector(".carousel");
+        const modalTitle = modal.querySelector(".modal-info h3");
+        const modalDescription = modal.querySelector(".modal-info p");
+
+        document.querySelectorAll(".card").forEach((card) => {
+            card.addEventListener("click", () => {
+                modalTitle.textContent = card.dataset.title;
+                modalDescription.textContent = card.dataset.description;
+
+                carousel.innerHTML = "";
+                const images = card.dataset.images.split(",");
+                images.forEach((image, index) => {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = image.trim();
+                    imgElement.alt = card.dataset.title;
+                    imgElement.className = index === 0 ? "active" : "";
+                    carousel.appendChild(imgElement);
+                });
+
+                modal.classList.add("open");
+            });
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.classList.remove("open");
+            modal.classList.add("close"); 
+            setTimeout(() => {
+                modal.style.display = "none";
+                modal.classList.remove("close");
+            }, 500); 
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeBtn.click();
+            }
+        });
   });
 });

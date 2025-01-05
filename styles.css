@@ -485,3 +485,104 @@ section {
     border-radius: 10px;
     border: 1px none #000000;
   }
+
+  /* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    transform: scale(0.9); /* Start slightly smaller */
+      animation: scaleUp 0.5s forwards; /* Scale-up animation */
+}
+
+.modal.close .modal-content {
+    animation: scaleDown 0.5s forwards; /* Scale-down animation */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.carousel img {
+    display: none;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+.modal-info h3 {
+    margin: 10px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
