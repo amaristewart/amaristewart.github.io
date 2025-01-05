@@ -493,7 +493,7 @@ section {
     gap: 1rem;
   }
   
-  a {
+  a > .animation {
     position: relative;
     display: flex;
     justify-content: center;
