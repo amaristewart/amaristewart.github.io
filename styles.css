@@ -417,6 +417,11 @@ section {
         width: calc(50% - 16px);
         margin: 0;
     }
+
+    .pdf {
+        width: 60%;
+        aspect-ratio: 1 / 1.41;
+    }
 }
 
 /* Small mobile optimizations */
