@@ -531,9 +531,13 @@ section {
     transform: scale(0.9);
 }
 
-.modal.open,
 .modal.close {
     transition: opacity 0.5s ease;
+}
+
+.modal.open {
+    display: flex;
+    transition: opacity 1s ease;
 }
 
 .modal.open {
@@ -562,4 +566,9 @@ section {
 
 .carousel img.active {
     display: block;
+}
+
+.modal-content {
+    font-family: "Courier New", monospace;
+    color:rgb(240, 240, 240);
 }
