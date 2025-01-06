@@ -347,6 +347,7 @@ section {
 
 .card-info-title > h3 {
     font-size: 0.9em;
+    margin-top: 4px;
 }
 
 .card-info-title > h4 {
