@@ -601,7 +601,6 @@ section {
     }
 } */
 
-/* Update your modal animation CSS to be more specific */
 .modal {
     display: none;
     position: fixed;
@@ -615,7 +614,6 @@ section {
     align-items: center;
 }
 
-/* Make sure scale animations ONLY affect modal-content */
 .modal-content {
     background-color: #333;
     border-radius: 8px;
@@ -625,21 +623,19 @@ section {
     text-align: center;
     color: #fff;
     position: relative;
-    transform: scale(1); /* Start at normal scale */
-    transition: transform 0.5s ease; /* Smooth transition for transform */
+    transform: scale(1); 
+    transition: transform 0.5s ease;
 }
 
-/* Opening animation */
+
 .modal.open .modal-content {
     transform: scale(1);
 }
 
-/* Closing animation */
 .modal.close .modal-content {
     transform: scale(0.9);
 }
 
-/* Remove any scaling animations from the modal container itself */
 .modal.open,
 .modal.close {
     transition: opacity 0.5s ease;
@@ -651,4 +647,29 @@ section {
 
 .modal.close {
     opacity: 0;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.carousel img {
+    display: none;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+.modal-info h3 {
+    margin: 10px 0;
+}
+
+.modal-info {
+    color: rgb(240, 240, 240);
+    font-family: 'Courier New', monospace;
 }
