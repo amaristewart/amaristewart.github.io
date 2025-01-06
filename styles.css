@@ -283,6 +283,7 @@ line-height: 20px;
 }
 
 .card-info-title > h3 {
+margin-top: 8px;
 font-size: 1.1em;
 line-height: 20px;
 }
