@@ -94,10 +94,6 @@ h1, h2, h3, h4, a, span {
     margin-bottom: 1rem;
 }
 
-/* h2 {
-    margin-top: 2rem;
-} */
-
 section {
     margin: 2rem 20px;
     max-width: calc(100% - 150px);
