@@ -572,10 +572,3 @@ section {
     font-family: "Courier New", monospace;
     color:rgb(240, 240, 240);
 }
-
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
