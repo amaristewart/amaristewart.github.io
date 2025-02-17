@@ -196,7 +196,7 @@ background-color: rgba(255, 255, 255, 0.2);
 border-radius: 10px;
 cursor: pointer;
 display: flex;
-height: 275px;
+height: 300px;
 flex-direction: column;
 position: relative;
 width: 300px;  
@@ -571,4 +571,45 @@ section {
 .modal-content {
     font-family: "Courier New", monospace;
     color:rgb(240, 240, 240);
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.github-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.github-link i {
+    font-size: 1.2rem;
+    width: auto;
+    height: auto;
+}
+
+.github-link span {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 500px) {
+    .github-link {
+        padding: 0.3rem;
+    }
+    
+    .github-link i {
+        font-size: 1rem;
+    }
+    
+    .github-link span {
+        font-size: 0.8rem;
+    }
 }
