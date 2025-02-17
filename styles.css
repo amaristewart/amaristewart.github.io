@@ -614,3 +614,35 @@ section {
         font-size: 0.8rem;
     }
 }
+
+.headshot-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.headshot {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 50px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .headshot-container {
+        max-width: 80%;
+    }
+    
+    .headshot {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .headshot-container {
+        max-width: 90%;
+    }
+}
