@@ -620,6 +620,7 @@ section {
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
+    padding: 0 20px; 
 }
 
 .headshot {
@@ -633,16 +634,28 @@ section {
 
 @media (max-width: 768px) {
     .headshot-container {
-        max-width: 80%;
+        max-width: 60%;
     }
     
     .headshot {
         max-width: 100%;
+        border-radius: 40px;
     }
 }
 
 @media (max-width: 480px) {
     .headshot-container {
-        max-width: 90%;
+        max-width: 280px; 
+        padding: 0 10px;
+    }
+    
+    .headshot {
+        border-radius: 30px;
+    }
+}
+
+@media (max-width: 320px) {
+    .headshot-container {
+        max-width: 240px;
     }
 }
