@@ -47,11 +47,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const carousel = modal.querySelector(".carousel");
         const modalTitle = modal.querySelector(".modal-info h3");
         const modalDescription = modal.querySelector(".modal-info p");
+        const githubLink = modal.querySelector(".github-link");
+
+        const githubRepos = {
+            "The Plugin Lab": "https://github.com/amaristewart/The-Plugin-Lab",
+            "Voice Denoiser Plugin": "https://github.com/amaristewart/Voice-Denoiser-Plugin",
+            "Audio Equalizer Plugin": "https://github.com/amaristewart/Biquad-Plugin"
+        };
 
         document.querySelectorAll(".card").forEach((card) => {
             card.addEventListener("click", () => {
                 modalTitle.textContent = card.dataset.title;
                 modalDescription.textContent = card.dataset.description;
+
+                const repoUrl = githubRepos[card.dataset.title];
+                if (repoUrl) {
+                    githubLink.href = repoUrl;
+                    githubLink.style.display = "inline-flex";
+                } else {
+                    githubLink.style.display = "none";
+                }
 
                 carousel.innerHTML = "";
                 const images = card.dataset.images.split(",");
