@@ -60,48 +60,24 @@ i {
   }
 }
 
+/* Desktop header*/
 @media (min-width: 1001px){
     header {
         position: fixed;
+        height: 75px;
         width: 100%;
-        height: 75px; /* Adjust as needed */
         background: rgba(51, 51, 51, 0.5);
         color: rgb(240, 240, 240);
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 2rem;
+        justify-content: flex-start;
+        padding: 2rem;
         z-index: 1000;
-        top: 0;
-        left: 0;
-        margin-left: 0;
+        margin-left: 0; 
         text-decoration: none;
     }
-
-    .name {
-        margin-bottom: 0;
-        font-size: 1.5rem;
-    }
-
-    #menu {
-        position: relative;
-        width: auto;
-        height: auto;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    } 
-
-    #menu-items {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem; /* Adjust spacing as needed */
-        z-index: 2;
-        font-family: 'Courier New', monospace;
-    }
 }
-
 
 .name {
     text-align: center;
