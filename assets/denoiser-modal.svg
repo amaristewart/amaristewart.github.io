@@ -1,0 +1,62 @@
+<svg viewBox="0 0 640 300" width="640" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="300" fill="#0d0d0d"></rect>
+  <text x="320" y="26" text-anchor="middle" font-size="13" fill="oklch(0.72 0.14 75)" opacity="0.85" font-family="&#39;Courier New&#39;, monospace">VOICE DENOISER PLUGIN — OVERVIEW</text>
+  
+  <rect x="20" y="40" width="185" height="230" rx="5" fill="#111" stroke="#1a1a1a"></rect>
+  <text x="112" y="62" text-anchor="middle" font-size="9" fill="oklch(0.72 0.14 75)" opacity="0.7" font-family="&#39;Courier New&#39;, monospace">HOW IT WORKS</text>
+  <circle cx="36" cy="80" r="3" fill="oklch(0.72 0.14 75)" opacity="0.3"></circle>
+  <text x="46" y="84" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">Audio → 8kHz (FIR)</text>
+  <circle cx="36" cy="102" r="3" fill="oklch(0.72 0.14 75)" opacity="0.38"></circle>
+  <text x="46" y="106" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">STFT (256 win, 75% OL)</text>
+  <circle cx="36" cy="124" r="3" fill="oklch(0.72 0.14 75)" opacity="0.46"></circle>
+  <text x="46" y="128" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">8 frames of context</text>
+  <circle cx="36" cy="146" r="3" fill="oklch(0.72 0.14 75)" opacity="0.54"></circle>
+  <text x="46" y="150" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">CNN or Feed Forward</text>
+  <circle cx="36" cy="168" r="3" fill="oklch(0.72 0.14 75)" opacity="0.62"></circle>
+  <text x="46" y="172" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">VADNet speech detect</text>
+  <circle cx="36" cy="190" r="3" fill="oklch(0.72 0.14 75)" opacity="0.70"></circle>
+  <text x="46" y="194" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">Dynamic noise gate</text>
+  <circle cx="36" cy="212" r="3" fill="oklch(0.72 0.14 75)" opacity="0.78"></circle>
+  <text x="46" y="216" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">ISTFT reconstruction</text>
+  <circle cx="36" cy="234" r="3" fill="oklch(0.72 0.14 75)" opacity="0.86"></circle>
+  <text x="46" y="238" font-size="8" fill="#555" font-family="&#39;Courier New&#39;, monospace">SRC back to orig rate</text>
+  
+  <rect x="225" y="40" width="185" height="230" rx="5" fill="#111" stroke="#1a1a1a"></rect>
+  <text x="317" y="62" text-anchor="middle" font-size="9" fill="oklch(0.72 0.14 75)" opacity="0.7" font-family="&#39;Courier New&#39;, monospace">CONTROLS</text>
+  <text x="240" y="82" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Bypass</text>
+  <text x="400" y="82" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">on/off pass-through</text>
+  <line x1="240" y1="86" x2="400" y2="86" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="240" y="106" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Strength</text>
+  <text x="400" y="106" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">0.0 – 1.0 blend</text>
+  <line x1="240" y1="110" x2="400" y2="110" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="240" y="130" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Network</text>
+  <text x="400" y="130" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">CNN or Feed Forward</text>
+  <line x1="240" y1="134" x2="400" y2="134" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="240" y="154" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Noise Type</text>
+  <text x="400" y="154" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">Washing Machine</text>
+  <line x1="240" y1="158" x2="400" y2="158" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="400" y="178" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">White Noise</text>
+  <line x1="240" y1="182" x2="400" y2="182" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="240" y="202" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Sample Rate</text>
+  <text x="400" y="202" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">8kHz – 192kHz</text>
+  <line x1="240" y1="206" x2="400" y2="206" stroke="#1a1a1a" stroke-width="0.5"></line>
+  <text x="240" y="226" font-size="8" fill="#444" font-family="&#39;Courier New&#39;, monospace">Frame Size</text>
+  <text x="400" y="226" text-anchor="end" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.75" font-family="&#39;Courier New&#39;, monospace">64 samples</text>
+  
+  <rect x="430" y="40" width="185" height="230" rx="5" fill="#111" stroke="#1a1a1a"></rect>
+  <text x="522" y="62" text-anchor="middle" font-size="9" fill="oklch(0.72 0.14 75)" opacity="0.7" font-family="&#39;Courier New&#39;, monospace">KEY TECH</text>
+  <text x="446" y="82" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">STFT</text>
+  <text x="446" y="95" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">Hamming window</text>
+  <text x="446" y="106" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">Overlap</text>
+  <text x="446" y="119" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">75% (256 samples)</text>
+  <text x="446" y="130" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">Context</text>
+  <text x="446" y="143" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">8 consecutive frames</text>
+  <text x="446" y="154" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">NN Input</text>
+  <text x="446" y="167" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">spectral magnitude</text>
+  <text x="446" y="178" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">VADNet</text>
+  <text x="446" y="191" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">speech probability</text>
+  <text x="446" y="202" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">Gate</text>
+  <text x="446" y="215" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">dynamic threshold</text>
+  <text x="446" y="226" font-size="8" fill="oklch(0.72 0.14 75)" opacity="0.5" font-family="&#39;Courier New&#39;, monospace">Phase</text>
+  <text x="446" y="239" font-size="7.5" fill="#333" font-family="&#39;Courier New&#39;, monospace">maintained via ISTFT</text>
+</svg>

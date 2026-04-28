@@ -1,147 +1,1283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Portfolio website of Amari Stewart, a Music Engineering Technology and Computer Engineering student, showcasing projects and contact information.">
-    <title>Amari Stewart</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="assets/HeadshotCircle.png">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amari Stewart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    /* =====================================================
+       RESET
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; }
+
+    /* =====================================================
+       TOKENS — Style A (Terminal Refined)
+    ===================================================== */
+    :root {
+      --bg:           #0d0d0d;
+      --surface:      #141414;
+      --surface2:     #1c1c1c;
+      --text:         rgb(232, 232, 228);
+      --text-muted:   rgba(232, 232, 228, 0.45);
+      --accent:       oklch(0.72 0.14 75);
+      --accent-dim:   oklch(0.72 0.14 75 / 0.12);
+      --border:       rgba(255, 255, 255, 0.07);
+      --h-font:       'Courier New', monospace;
+      --b-font:       'Courier New', monospace;
+      --lbl-font:     'Courier New', monospace;
+      --radius:       8px;
+      --sidebar-w:    200px;
+    }
+
+    /* Style B — Editorial Bold */
+    body.style-b {
+      --bg:           #06060a;
+      --surface:      #0f0f16;
+      --surface2:     #17171f;
+      --accent:       oklch(0.72 0.17 195);
+      --accent-dim:   oklch(0.72 0.17 195 / 0.12);
+      --border:       rgba(255, 255, 255, 0.06);
+      --h-font:       'Space Grotesk', sans-serif;
+      --b-font:       'Courier New', monospace;
+      --lbl-font:     'Space Grotesk', sans-serif;
+      --radius:       4px;
+    }
+
+    /* Style C — Studio Minimal */
+    body.style-c {
+      --bg:           #0e1117;
+      --surface:      #141820;
+      --surface2:     #1c2130;
+      --text:         rgb(220, 225, 235);
+      --text-muted:   rgba(220, 225, 235, 0.45);
+      --accent:       oklch(0.67 0.13 145);
+      --accent-dim:   oklch(0.67 0.13 145 / 0.1);
+      --border:       rgba(255, 255, 255, 0.07);
+      --h-font:       'DM Sans', sans-serif;
+      --b-font:       'DM Sans', sans-serif;
+      --lbl-font:     'DM Sans', sans-serif;
+      --radius:       14px;
+    }
+
+    /* =====================================================
+       BASE
+    ===================================================== */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--b-font);
+      min-height: 100vh;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    /* Dot grid — style A only */
+    body.style-a {
+      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--h-font);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    p { line-height: 1.7; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* =====================================================
+       SECTION LABEL
+    ===================================================== */
+    .section-label {
+      font-family: var(--lbl-font);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    /* =====================================================
+       SIDEBAR NAV (Style A)
+    ===================================================== */
+    .sidebar-nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+      z-index: 100;
+      gap: 3rem;
+    }
+
+    .sidebar-nav .nav-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: middle;
+      border-right: 1.5px solid var(--accent);
+      width: 0;
+      animation: typeout 2s steps(13) forwards 0.3s, blink 0.9s step-end infinite;
+    }
+    /* Static name for non-A styles */
+    body:not(.style-a) .nav-brand .nav-typing {
+      width: auto !important;
+      border-right: none;
+      animation: none;
+    }
+    @keyframes typeout { to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    .sidebar-nav nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sidebar-nav nav a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .sidebar-nav nav a:hover { color: var(--accent); }
+
+    /* =====================================================
+       TOP NAV (Styles B & C)
+    ===================================================== */
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: rgba(10, 10, 16, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 100;
+    }
+
+    .top-nav .nav-brand {
+      font-family: var(--h-font);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .top-nav nav { display: flex; gap: 2rem; }
+    .top-nav nav a {
+      font-family: var(--lbl-font);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .top-nav nav a:hover { color: var(--accent); }
+
+    /* Show/hide navs — A now uses top nav like C */
+    .sidebar-nav { display: none; }
+    body:not(.style-a) .sidebar-nav { display: none; }
+
+    /* =====================================================
+       MAIN LAYOUT
+    ===================================================== */
+    main { min-height: 100vh; }
+    main { padding-top: 60px; }
+
+    section {
+      padding: 5rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* =====================================================
+       ABOUT
+    ===================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+
+    .about-photo img {
+      width: 100%;
+      border-radius: var(--radius);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    body.style-a .about-photo img { filter: grayscale(15%); }
+    body.style-b .about-photo img { filter: grayscale(20%) contrast(1.05); }
+
+    .about-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    /* Style A about: photo on right like C */
+
+    .about-text p + p { margin-top: 0.75rem; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skills span {
+      font-family: var(--lbl-font);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      background: var(--accent-dim);
+      padding: 0.3rem 0.75rem;
+      border-radius: calc(var(--radius) * 0.6);
+    }
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
+    }
+    .skill-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .skill-group-label {
+      font-family: var(--lbl-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tags span {
+      font-family: var(--lbl-font);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      background: var(--accent-dim);
+      padding: 0.28rem 0.7rem;
+      border-radius: calc(var(--radius) * 0.6);
+      transition: filter 0.2s, transform 0.2s;
+    }
+    .skill-tags span:hover { filter: brightness(1.3); transform: translateY(-2px); }
+
+    /* Style B: stacked about */
+    body.style-b .about-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      max-width: 600px;
+    }
+    body.style-b .about-photo img {
+      width: 180px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+    }
+    body.style-b .skills { justify-content: center; }
+    body.style-b .about-text h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; }
+
+    /* Style A & C: photo right */
+    body.style-a .about-grid,
+    body.style-c .about-grid { grid-template-columns: 1fr 220px; }
+    body.style-a .about-grid .about-photo,
+    body.style-c .about-grid .about-photo { order: 2; }
+    body.style-a .about-grid .about-text,
+    body.style-c .about-grid .about-text { order: 1; }
+
+    /* =====================================================
+       SECTION HEADINGS
+    ===================================================== */
+    .section-header { margin-bottom: 2rem; }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    /* Style A headings match C scale */
+    body.style-b .section-header h2 { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 700; }
+
+    .download-btn {
+      font-size: 1rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .download-btn:hover { color: var(--accent); }
+
+    /* =====================================================
+       EXPERIENCE
+    ===================================================== */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .exp-entry {
+      padding: 2rem 0 2rem 1.75rem;
+      border-left: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .exp-entry::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 2.3rem;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .exp-entry:hover { border-color: var(--accent); }
+    .exp-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    body.style-b .exp-role { font-size: 1.3rem; }
+    .exp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      font-family: var(--lbl-font);
+      font-size: 0.75rem;
+    }
+    .exp-company { color: var(--accent); font-weight: 500; }
+    .exp-location, .exp-date { color: var(--text-muted); }
+    .exp-sep { color: var(--border); }
+    .exp-badge {
+      flex-shrink: 0;
+      font-family: var(--lbl-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      background: var(--accent-dim);
+      padding: 0.2rem 0.6rem;
+      border-radius: calc(var(--radius) * 0.5);
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.25rem;
+    }
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      opacity: 0.5;
+    }
+    .exp-project {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      margin-top: 0.5rem;
+    }
+    .exp-project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .exp-project-label {
+      font-family: var(--lbl-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .exp-project-name {
+      font-family: var(--h-font);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .exp-project-desc { font-size: 0.82rem; line-height: 1.7; margin-bottom: 0.9rem; }
+    .exp-project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .exp-project-tags span {
+      font-family: var(--lbl-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      border-radius: calc(var(--radius) * 0.5);
+    }
+
+    /* =====================================================
+       PROJECT CARDS — shared
+    ===================================================== */
+    #cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.25s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--accent-dim); }
+
+    /* Glow overlay */
+    .card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%),
+        var(--accent-dim), transparent 60%);
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card-image-area {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-image-area img { width: 100%; height: 100%; object-fit: cover; }
+    .card-image-area.card-image-placeholder i {
+      font-size: 3rem;
+      color: var(--text-muted);
+      opacity: 0.35;
+    }
+
+    .card-body { padding: 1.1rem 1.2rem 1.3rem; flex: 1; }
+
+    .card-tag {
+      font-family: var(--lbl-font);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .card-body p { font-size: 0.82rem; line-height: 1.6; }
+
+    /* Style A: 3-col grid like C */
+    body.style-a .card { width: calc(33.3% - 8px); }
+
+    /* Style B: stacked full-width horizontal */
+    body.style-b #cards { flex-direction: column; gap: 1px; }
+    body.style-b .card {
+      width: 100%;
+      border-radius: 0;
+      border-left: none; border-right: none;
+      border-color: var(--border);
+    }
+    body.style-b .card:first-child { border-top: 1px solid var(--border); }
+    body.style-b .card-inner { flex-direction: row; height: 200px; }
+    body.style-b .card-image-area { width: 280px; flex-shrink: 0; height: 100%; }
+    body.style-b .card-body { display: flex; flex-direction: column; justify-content: center; padding: 1.5rem 2rem; }
+    body.style-b .card-body h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    body.style-b .card-body p { font-size: 0.9rem; }
+    body.style-b .card:hover { transform: none; }
+    body.style-b .card:hover .card-body h3 { color: var(--accent); }
+    body.style-b .card-body h3 { transition: color 0.2s; }
+
+    /* Style C: clean 3-col grid */
+    body.style-c .card { width: calc(33.3% - 8px); }
+    body.style-c .card-image-area { height: 140px; }
+    body.style-c #cards { gap: 12px; }
+
+    /* =====================================================
+       RESUME
+    ===================================================== */
+    .resume-download { display: flex; flex-direction: column; gap: 1.25rem; }
+    .resume-download p { font-size: 0.9rem; }
+    .resume-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.5rem;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      font-family: var(--lbl-font);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      transition: background 0.2s, filter 0.2s;
+      width: fit-content;
+    }
+    .resume-dl-btn:hover { filter: brightness(1.2); }
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+    #contact h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.03em;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    /* contact h2 inherits base scale */
+    body.style-b #contact h2 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-family: var(--lbl-font);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .contact-link i { font-size: 1.1rem; }
+    .contact-link:hover {
+      color: var(--accent);
+      border-color: var(--accent-dim);
+      background: var(--accent-dim);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4rem;
+      font-family: var(--lbl-font);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+    /* footer full width */
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+    .modal {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.75);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal.open { display: flex; animation: fadein 0.2s ease; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 640px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: scalein 0.25s cubic-bezier(0.22,1,0.36,1);
+    }
+    @keyframes scalein { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      z-index: 2;
+    }
+    .modal-close:hover { background: var(--accent-dim); color: var(--accent); }
+
+    .modal-image-area {
+      width: 100%;
+      height: 280px;
+      background: var(--surface2);
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-image-area img { width: 100%; height: 100%; object-fit: contain; }
+    .modal-placeholder {
+      display: none; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
+    }
+    .modal-placeholder i { font-size: 4rem; color: var(--text-muted); opacity: 0.25; }
+
+    .modal-info { padding: 1.5rem 2rem 2rem; }
+    .modal-info h3 { font-size: 1.4rem; margin: 0.4rem 0 0.75rem; }
+    .modal-info p { font-size: 0.9rem; }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      padding: 0.6rem 1rem;
+      background: var(--accent-dim);
+      border: 1px solid oklch(from var(--accent) l c h / 0.3);
+      border-radius: calc(var(--radius) * 0.6);
+      font-family: var(--lbl-font);
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .github-link:hover { filter: brightness(1.15); }
+
+    /* =====================================================
+       DYNAMICS
+    ===================================================== */
+
+    /* Smooth background drift */
+    body.style-a {
+      transition: background-position 0.9s cubic-bezier(0.22,1,0.36,1),
+                  background-color 0.4s;
+    }
+
+    /* Cursor spotlight */
+    #cursor-spotlight {
+      position: fixed;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 65%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    body.style-a #cursor-spotlight { opacity: 0.7; }
+
+    /* Card tilt resets smoothly */
+    .card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .card.tilt-reset {
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Skill tag hover pulse */
+    .skills span {
+      transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .skills span:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.3);
+    }
+
+    /* Nav link underline draw */
+    .top-nav nav a, .sidebar-nav nav a {
+      position: relative;
+    }
+    .top-nav nav a::after, .sidebar-nav nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+    .top-nav nav a:hover::after, .sidebar-nav nav a:hover::after { width: 100%; }
+
+    /* =====================================================
+       SCROLLBAR
+    ===================================================== */
+    * { scrollbar-width: thin; scrollbar-color: var(--surface2) transparent; }
+    *::-webkit-scrollbar { width: 6px; }
+    *::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 768px) {
+      body.style-a main { margin-left: 0; }
+      .sidebar-nav { display: none !important; }
+      .top-nav { display: flex !important; }
+      section { padding: 3rem 1.5rem; }
+      footer { margin-left: 0 !important; padding: 1.25rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr !important; }
+      body.style-c .about-grid { direction: ltr; }
+      .card { width: 100% !important; }
+      body.style-b .card-inner { flex-direction: column !important; height: auto !important; }
+      body.style-b .card-image-area { width: 100% !important; height: 140px !important; }
+      body.style-b #cards { gap: 0; }
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <a href = "#about" class="menu-item">
-        <h1 class="name">
-            <p><b>Amari Stewart</b></p>
-        </h1>
-        </a>
-        <nav id="menu">
-            <div id="menu-items">
-                <a data-value="Projects" href="#projects" class="menu-item">Projects</a>
-                <a data-value="Resume" href="#resume" class="menu-item">Resume</a>
-                <a data-value="Contact" href="#contact" class="menu-item">Contact</a> 
-            </div>
-        </nav>
-    </header>
+<body class="style-a">
 
-    <div id="menu-background-pattern"></div>
+  <!-- SIDEBAR NAV — Style A -->
+  <header class="sidebar-nav">
+    <a href="#about" class="nav-logo">
+      <span class="nav-typing">Amari Stewart</span>
+    </a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
+  <!-- TOP NAV — Styles B & C -->
+  <header class="top-nav">
+    <a href="#about" class="nav-brand"><span class="nav-typing">Amari Stewart</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── ABOUT ─────────────────────────────── -->
     <section id="about">
-        <h2><b>ABOUT ME :)</b></h2>
-        <div class="headshot-container">
-          <img src="assets/HeadshotCircle.png" alt="Amari Stewart" class="headshot">
+      <span class="section-label reveal">About me</span>
+      <div class="about-grid">
+        <div class="about-photo reveal reveal-delay-1" style="height: 220px">
+          <img src="assets/HeadshotSquare.jpg" alt="Amari Stewart" style="object-fit: fill; width: 220px; height: 220px">
         </div>
-        <br>
-        <div style="text-align: center;">
-        <h4> Hi! My name is Amari, and I recently earned my B.S in Music Engineering Technology with a minor in Computer Engineering at the University of Miami. My passion lies in digital signal processing, audio software development, and bringing creative solutions to the audio engineering field!</h4>
+        <div class="about-text reveal reveal-delay-2">
+          <h2>Hi, I'm Amari!</h2>
+          <p>I am a recent graduate of the University of Miami with a Bachelor of Science in Music Engineering Technology and a minor in Computer Engineering.</p>
+          <p style="margin-top: 0.75rem;">Passionate about digital signal processing and audio software development, I am looking forward to pursuing a career in audio engineering to bring creativity and technical expertise to the audio technology industry!</p>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <span class="skill-group-label">Languages</span>
+              <div class="skill-tags">
+                <span>C / C++</span><span>MATLAB</span><span>Python</span><span>JavaScript</span><span>Assembly</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <span class="skill-group-label">Frameworks</span>
+              <div class="skill-tags">
+                <span>JUCE</span><span>PyTorch</span><span>Git / SVN</span><span>Unix</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <span class="skill-group-label">Expertise</span>
+              <div class="skill-tags">
+                <span>DSP</span><span>Machine Learning</span><span>Real-Time Audio</span><span>Algorithm Development</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
+    <!-- ── EXPERIENCE ─────────────────────────── -->
+    <section id="experience">
+      <div class="section-header reveal">
+        <span class="section-label">Background</span>
+        <h2>Experience</h2>
+      </div>
+      <div class="experience-list">
+
+        <!-- VocalUnity -->
+        <div class="exp-entry reveal">
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <h3 class="exp-role">Lead Software Developer &amp; Audio ML Researcher</h3>
+              <div class="exp-meta">
+                <span class="exp-company">VocalUnity</span>
+                <span class="exp-sep">·</span>
+                <span class="exp-location">Remote</span>
+                <span class="exp-sep">·</span>
+                <span class="exp-date">Jan 2026 – Present</span>
+              </div>
+            </div>
+            <span class="exp-badge">Current</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Exploratory research on vocal analysis and feedback systems for AI training</li>
+            <li>Evaluated signal processing tools and approaches to guide feature planning</li>
+            <li>Translated research insights into technical specifications and development roadmaps</li>
+            <li>Literature review and technical evaluation of voice-to-voice and timbre transfer research</li>
+          </ul>
+        </div>
+
+        <!-- Bose -->
+        <div class="exp-entry reveal reveal-delay-1">
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <h3 class="exp-role">Acoustics Systems Engineering Co-op</h3>
+              <div class="exp-meta">
+                <span class="exp-company">Bose Corporation</span>
+                <span class="exp-sep">·</span>
+                <span class="exp-location">Bloomfield Hills, MI</span>
+                <span class="exp-sep">·</span>
+                <span class="exp-date">July – Dec 2025</span>
+              </div>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed automated MATLAB algorithms for in-vehicle acoustic data acquisition and DSP workflows</li>
+            <li>Built test automation frameworks for prototype acoustic system validation and performance analysis</li>
+            <li>Troubleshot hardware, software, and connectivity issues across automated measurement systems</li>
+            <li>Collaborated with Automotive Audio Team to deliver scalable automation solutions for audio development</li>
+          </ul>
+          <div class="exp-project">
+            <div class="exp-project-header">
+              <span class="exp-project-label">Featured Project</span>
+              <span class="exp-project-name">In-Vehicle Acoustic Measurement Automation</span>
+            </div>
+            <p class="exp-project-desc">Automated in-vehicle acoustic production audits end-to-end, replacing a largely manual process. Solved a timing delay corrupting transfer function measurements by developing a MATLAB impulse-detection sync algorithm. Integrated HATS motor control and Bose acoustic libraries to compute frequency response, THD, phase, and spatial prediction — delivered as a full GUI so engineers could run the entire workflow without touching the command line.</p>
+            <div class="exp-project-tags">
+              <span>MATLAB</span>
+              <span>Impulse Detection</span>
+              <span>HATS Integration</span>
+              <span>Data Acquisition</span>
+              <span>GUI DESIGN</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Frost — Recording/Sound/Video -->
+        <div class="exp-entry reveal reveal-delay-2">
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <h3 class="exp-role">Recording, Sound &amp; Video Engineer</h3>
+              <div class="exp-meta">
+                <span class="exp-company">Frost School of Music</span>
+                <span class="exp-sep">&middot;</span>
+                <span class="exp-location">Coral Gables, FL</span>
+                <span class="exp-sep">&middot;</span>
+                <span class="exp-date">Mar 2022 &ndash; Jun 2025</span>
+              </div>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Operated Yamaha QL1 and QL5 digital consoles to mix and monitor live audio for concerts, recitals, and events</li>
+            <li>Patched and routed signals across mixing consoles, video switchers, and playback systems</li>
+            <li>Supported live video systems using Blackmagic ATEM and TriCaster platforms</li>
+            <li>Connected, tested, and troubleshot audio and video systems; set up and struck full production rigs</li>
+            <li>Collaborated with lighting, audio, video, and production teams to ensure smooth show execution</li>
+          </ul>
+        </div>
+
+        <!-- Frost — Lighting -->
+        <div class="exp-entry reveal reveal-delay-3">
+          <div class="exp-header">
+            <div class="exp-title-group">
+              <h3 class="exp-role">Lighting Engineer</h3>
+              <div class="exp-meta">
+                <span class="exp-company">Frost School of Music</span>
+                <span class="exp-sep">&middot;</span>
+                <span class="exp-location">Coral Gables, FL</span>
+                <span class="exp-sep">&middot;</span>
+                <span class="exp-date">Jan 2023 &ndash; Jun 2025</span>
+              </div>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Programmed and operated Chamsys MagicQ lighting control board for live performances</li>
+            <li>Executed load-in, setup, and strike of lighting and stage equipment for live events</li>
+            <li>Executed and implemented stage plots, coordinating lighting, audio, and stage layouts</li>
+            <li>Coordinated with visiting production crews to meet technical and scheduling requirements</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ───────────────────────────── -->
     <section id="projects">
-      <h2><b>PROJECTS</b></h2>
-      <div id="cards" style="display: flex; flex-wrap: wrap;">
-      <div class="card" data-title="The Plugin Lab" data-description="Designed to simplify audio plugin development with a user-friendly interface. Provides customizable baseline algorithms for various audio effects for users to export their custom plugins directly into their DAW of choice."
-        data-images="assets/ThePluginLabRoughMockup.png">
-        <div class="card-content">
-        <div class="card-image">
-          <img src="assets/white.png" alt="The Plugin Lab" style="border-radius: 5px;" class="card-image">
-        </div>
-        <div class="card-info-wrapper">
-          <div class="card-info">
-          <div class="card-info-title">
-            <h3>The Plugin Lab</h3>
-            <h4>Designed to simplify audio plugin development with a user-friendly interface.</h4>
+      <div class="section-header reveal">
+        <span class="section-label">Work</span>
+        <h2>Projects</h2>
+      </div>
+      <div id="cards">
+        <div class="card reveal reveal-delay-1"
+          data-title="The Plugin Lab"
+          data-tag="Audio App"
+          data-description="Designed to simplify audio plugin development with a user-friendly interface. Provides customizable baseline algorithms for various audio effects for users to export their custom plugins directly into their DAW of choice."
+          data-github="https://github.com/amaristewart/The-Plugin-Lab"
+          data-image="assets/PluginLabEQView.png">
+          <div class="card-inner">
+            <div class="card-image-area" style="background:#000; padding: 16px;">
+              <img src="assets/logo.png" alt="The Plugin Lab" style="object-fit:contain; filter:invert(1);">
+            </div>
+            <div class="card-body">
+              <div class="card-tag">Audio App</div>
+              <h3>The Plugin Lab</h3>
+              <p>Simplified audio plugin development with customizable DSP algorithms and DAW export.</p>
+            </div>
           </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2"
+          data-title="Voice Denoiser Plugin"
+          data-tag="ML + DSP"
+          data-description="Combined convolutional neural networks and traditional noise gates for effective speech detection and noise reduction."
+          data-github="https://github.com/amaristewart/Voice-Denoiser-Plugin"
+          data-image="assets/denoiser-modal.svg">
+          <div class="card-inner">
+            <div class="card-image-area" style="background:#0d0d0d;">
+              <img src="assets/denoiser-cover.svg" alt="Voice Denoiser" style="width:100%;height:100%;object-fit:cover;">
+
+            </div>
+            <div class="card-body">
+              <div class="card-tag">ML + DSP</div>
+              <h3>Voice Denoiser Plugin</h3>
+              <p>CNN + noise gate hybrid for effective real-time speech detection and noise reduction.</p>
+            </div>
           </div>
         </div>
+
+        <div class="card reveal reveal-delay-3"
+          data-title="Audio Equalizer Plugin"
+          data-tag="MATLAB"
+          data-description="Developed an audio equalizer algorithm in MATLAB including a high shelf, high mid band, low mid band, low pass filter, and high pass filter."
+          data-github="https://github.com/amaristewart/Biquad-Plugin"
+          data-image="assets/Equalizer.png">
+          <div class="card-inner">
+            <div class="card-image-area">
+              <img src="assets/Equalizer.png" alt="Equalizer Plugin">
+            </div>
+            <div class="card-body">
+              <div class="card-tag">MATLAB</div>
+              <h3>Audio Equalizer Plugin</h3>
+              <p>Multi-band EQ with high shelf, mid bands, and high/low pass filters.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card" data-title="Voice Denoiser Plugin" data-description="Combined convolutional neural networks and traditional noise gates for effective speech detection and noise reduction."
-        data-images="photo1.jpg, photo2.jpg, photo3.jpg">
-        <div class="card-content">
-        <div class="card-image">
-          <i class="fa fa-microphone fa-5x" aria-hidden="true" style='color:white'></i>
-        </div>
-        <div class="card-info-wrapper">
-          <div class="card-info">
-          <div class="card-info-title">
-            <h3>Voice Denoiser Plugin</h3>
-            <h4>Combined convolutional neural networks and traditional noise gates for effective speech detection and noise reduction.</h4>
-          </div>
-          </div>
-        </div>
-        </div>
+    </section>
+
+    <!-- ── RESUME ─────────────────────────────── -->
+    <section id="resume">
+      <div class="section-header reveal">
+        <span class="section-label">Document</span>
+        <h2>Resume</h2>
       </div>
-      <div class="card" data-title="Audio Equalizer Plugin" data-description="Developed an audio equalizer algorithm in MATLAB including a high shelf, high mid band, low mid band, low pass filter, and high pass filter."
-        data-images="assets/Equalizer.png, assets/Equalizer.png, assets/Equalizer.png">
-        <div class="card-content">
-        <div class="card-image">
-          <img src="assets/Equalizer.png" alt="Equalizer Plugin" style="border-radius: 5px;" class="card-image">
-        </div>
-        <div class="card-info-wrapper">
-          <div class="card-info">
-          <div class="card-info-title">
-            <h3>Audio Equalizer Plugin</h3>
-            <h4>Developed an audio equalizer algorithm in MATLAB.</h4>
-          </div>
-          </div>
-        </div>
-        </div>
+      <div class="resume-download reveal reveal-delay-1">
+        <p>Full work history, education, and skills in one document.</p>
+        <a href="assets/AmariStewartPublicResume.pdf" target="_blank" rel="noopener" class="resume-dl-btn">
+          <i class="fa-solid fa-download"></i>
+          Download PDF
+        </a>
       </div>
+    </section>
+
+    <!-- ── CONTACT ────────────────────────────── -->
+    <section id="contact">
+      <div class="reveal">
+        <span class="section-label">Get in touch</span>
+        <h2>Contact</h2>
+      </div>
+      <div class="contact-links reveal reveal-delay-1">
+        <a href="mailto:aas389@miami.edu" class="contact-link">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/amari-stewart/" target="_blank" rel="noopener" class="contact-link">
+          <i class="fa-brands fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/amaristewart" target="_blank" rel="noopener" class="contact-link">
+          <i class="fa-brands fa-github"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Amari Stewart. All rights reserved.</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-image-area">
+        <img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="" style="display:none">
+        <div id="modal-placeholder" class="modal-placeholder"><i class="fa-solid fa-microphone-lines"></i></div>
+      </div>
+      <div class="modal-info">
+        <div id="modal-tag" class="card-tag"></div>
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+        <a id="modal-github" href="" target="_blank" rel="noopener" class="github-link">
+          <i class="fa-brands fa-github"></i>
+          View on GitHub
+        </a>
       </div>
     </div>
-    </section>
+  </div>
 
-          <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close"><i class="fa fa-window-close" aria-hidden="true"></i></span>
-                <div class="carousel">
-                    <img src="photo1.jpg" alt="Slide 1" class="carousel-slide active">
-                    <img src="photo2.jpg" alt="Slide 2" class="carousel-slide">
-                    <img src="photo3.jpg" alt="Slide 3" class="carousel-slide">
-                </div>
-                <div class="modal-info">
-                    <h3></h3>
-                    <p></p>
-                    <a href="" class="github-link" target="_blank" rel="noopener noreferrer">
-                      <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                      <span>View on GitHub</span>
-                  </a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div id="cursor-spotlight"></div>
+  <div id="tweaks-root"></div>
 
-    <section id="resume">
-      <div style="display: flex; align-items: left; justify-content: left; gap: 1rem;">
-        <h2><b>RESUME</b></h2>
-        <a href="assets/AmariStewartPublicResume.pdf" download>
-          <i class="fa fa-download fa-2x" aria-hidden="true" style="padding-bottom: -1rem;"></i>
-        </a>
-      </div>
-      <div style="display: flex; justify-content: center;">
-        <embed src="assets/AmariStewartPublicResume.pdf#toolbar=0&navpanes=0&scrollbar=0" width="790" height="1015" />
-      </div>
-    </section>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <section id="contact">
-    <h2><b>CONTACT</b></h2>
-    <a href="mailto:aas389@miami.edu" style="text-decoration:none;">
-      <i class="fa fa-envelope-o fa-3x" aria-hidden="true" ></i>
-    </a>
-    <a href="https://www.linkedin.com/in/amari-stewart/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
-    </a>
-    <a href="https://github.com/amaristewart" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-github fa-3x" aria-hidden="true"></i>
-    </a>
-  </section>
+    // ── Scroll reveals ─────────────────────────
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Amari Stewart. All rights reserved.</p>
-    </footer>
+    // ── Cursor spotlight ───────────────────────
+    const spotlight = document.getElementById('cursor-spotlight');
+    document.addEventListener('mousemove', e => {
+      spotlight.style.left = e.clientX + 'px';
+      spotlight.style.top  = e.clientY + 'px';
+    });
+
+    // ── Dot-grid dynamics (style A) ────────────
+    let navHovered = false;
+    let rafBg;
+
+    // Nav hover → preset background shift (original behavior)
+    document.querySelectorAll('.top-nav nav a').forEach((item, i) => {
+      item.addEventListener('mouseenter', () => {
+        navHovered = true;
+        const pos = (i + 1) * 12;
+        document.body.style.backgroundPosition = `${pos}% ${pos}%`;
+      });
+      item.addEventListener('mouseleave', () => { navHovered = false; });
+    });
+
+    // Mouse parallax shifts dot grid when nav not hovered
+    document.addEventListener('mousemove', e => {
+      if (navHovered || !document.body.classList.contains('style-a')) return;
+      cancelAnimationFrame(rafBg);
+      rafBg = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth)  * 22;
+        const y = (e.clientY / window.innerHeight) * 22;
+        document.body.style.backgroundPosition = `${x}% ${y}%`;
+      });
+    });
+
+    // Scroll drift
+    window.addEventListener('scroll', () => {
+      if (navHovered || !document.body.classList.contains('style-a')) return;
+      const p = (window.scrollY / document.body.scrollHeight) * 40;
+      document.body.style.backgroundPosition = `${p}% ${p}%`;
+    }, { passive: true });
+
+    // ── Card glow + 3D tilt ────────────────────
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r   = card.getBoundingClientRect();
+        const cx  = r.left + r.width  / 2;
+        const cy  = r.top  + r.height / 2;
+        const dx  = (e.clientX - cx) / (r.width  / 2);
+        const dy  = (e.clientY - cy) / (r.height / 2);
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        card.classList.remove('tilt-reset');
+        card.style.transform = `perspective(800px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.add('tilt-reset');
+        card.style.transform = '';
+        setTimeout(() => card.classList.remove('tilt-reset'), 500);
+      });
+    });
+
+    // ── Modal ─────────────────────────────────
+    const modal = document.getElementById('modal');
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.dataset.image;
+        const modalImg = document.getElementById('modal-img');
+        const placeholder = document.getElementById('modal-placeholder');
+        if (img) {
+          modalImg.src = img;
+          modalImg.style.display = 'block';
+          placeholder.style.display = 'none';
+        } else {
+          modalImg.style.display = 'none';
+          placeholder.style.display = 'flex';
+        }
+        document.getElementById('modal-tag').textContent   = card.dataset.tag || '';
+        document.getElementById('modal-title').textContent = card.dataset.title;
+        document.getElementById('modal-desc').textContent  = card.dataset.description;
+        document.getElementById('modal-github').href       = card.dataset.github || '#';
+        modal.classList.add('open');
+      });
+    });
+    modal.querySelector('.modal-close').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+    // ── Smooth scroll ──────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 32;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "style": "A"
+    }/*EDITMODE-END*/;
+
+    const styleDescriptions = {
+      A: 'Terminal Refined — amber, monospace, sidebar',
+      B: 'Editorial Bold — teal, Space Grotesk, type-forward',
+      C: 'Studio Minimal — green, DM Sans, clean grid'
+    };
+
+    function PortfolioTweaks() {
+      const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => {
+        document.body.className = 'style-' + tweaks.style.toLowerCase();
+        // Re-observe reveals when switching (elements may not be visible)
+        document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) el.classList.add('revealed');
+        });
+      }, [tweaks.style]);
+
+      return (
+        <TweaksPanel>
+          <TweakSection label="Visual Direction" />
+          <TweakRadio
+            label="Style"
+            value={tweaks.style}
+            options={['A', 'B', 'C']}
+            onChange={v => setTweak('style', v)}
+          />
+          <div style={{fontSize: '11px', color: '#888', padding: '4px 0 0', lineHeight: 1.5, fontFamily: 'ui-monospace, monospace'}}>
+            {styleDescriptions[tweaks.style]}
+          </div>
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<PortfolioTweaks />);
+  </script>
 </body>
 </html>

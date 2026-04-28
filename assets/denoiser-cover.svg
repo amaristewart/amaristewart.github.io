@@ -1,0 +1,11 @@
+<svg viewBox="0 0 300 160" width="300" height="160" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="160" fill="#0d0d0d"></rect>
+  <path d="M0,80 Q37,40 75,80 Q112,120 150,80 Q187,40 225,80 Q262,120 300,80" fill="none" stroke="oklch(0.72 0.14 75 / 0.08)" stroke-width="20"></path>
+  <text x="24" y="58" font-size="28" fill="oklch(0.72 0.14 75)" opacity="0.9" font-weight="700" font-family="&#39;Courier New&#39;, monospace">CNN</text>
+  <text x="24" y="82" font-size="11" fill="#555" font-family="&#39;Courier New&#39;, monospace">+</text>
+  <text x="36" y="82" font-size="11" fill="#555" font-family="&#39;Courier New&#39;, monospace">NOISE GATE</text>
+  <line x1="24" y1="90" x2="180" y2="90" stroke="#222" stroke-width="0.5"></line>
+  <text x="24" y="104" font-size="8.5" fill="#444" font-family="&#39;Courier New&#39;, monospace">Voice Denoiser Plugin</text>
+  <text x="24" y="118" font-size="7.5" fill="#2a2a2a" font-family="&#39;Courier New&#39;, monospace">STFT · VADNet · 8kHz · real-time</text>
+  <text x="24" y="132" font-size="7" fill="#1f1f1f" font-family="&#39;Courier New&#39;, monospace">Feed Forward option · strength 0–1</text>
+</svg>
