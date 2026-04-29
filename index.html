@@ -36,6 +36,7 @@
       --lbl-font:     'Courier New', monospace;
       --radius:       8px;
       --sidebar-w:    200px;
+      --nav-h:        60px;
     }
 
     /* Style B — Editorial Bold */
@@ -192,7 +193,7 @@
     .top-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      height: 60px;
+      height: var(--nav-h);
       background: rgba(10, 10, 16, 0.7);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -221,6 +222,19 @@
       transition: color 0.2s;
     }
     .top-nav nav a:hover { color: var(--accent); }
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) * 0.8);
+      background: var(--surface);
+      font-size: 1rem;
+    }
+    .top-nav nav.open { display: flex; }
 
     /* Show/hide navs — A now uses top nav like C */
     .sidebar-nav { display: none; }
@@ -230,10 +244,10 @@
        MAIN LAYOUT
     ===================================================== */
     main { min-height: 100vh; }
-    main { padding-top: 60px; }
+    main { padding-top: var(--nav-h); }
 
     section {
-      padding: 5rem 4rem;
+      padding: 5rem clamp(1.5rem, 5vw, 4rem);
       max-width: 1000px;
       margin: 0 auto;
     }
@@ -268,6 +282,11 @@
     /* Style A about: photo on right like C */
 
     .about-text p + p { margin-top: 0.75rem; }
+    .about-photo-frame {
+      width: 220px;
+      height: 220px;
+      max-width: 100%;
+    }
 
     .skills {
       display: flex;
@@ -802,21 +821,109 @@
     *::-webkit-scrollbar { width: 6px; }
     *::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
 
+    @media (max-width: 1100px) {
+      body.style-a .card,
+      body.style-c .card {
+        width: calc(50% - 6px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .top-nav { padding: 0 1.25rem; }
+      .top-nav nav { gap: 1.2rem; }
+      .top-nav nav a { font-size: 0.76rem; }
+      .exp-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .exp-badge { margin-top: -0.35rem; }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      #cursor-spotlight { display: none; }
+      .card,
+      .card:hover {
+        transform: none !important;
+      }
+      .card::before,
+      .card:hover::before {
+        opacity: 0;
+      }
+    }
+
     /* =====================================================
        RESPONSIVE
     ===================================================== */
     @media (max-width: 768px) {
+      :root { --nav-h: 56px; }
       body.style-a main { margin-left: 0; }
       .sidebar-nav { display: none !important; }
       .top-nav { display: flex !important; }
+      .top-nav { padding: 0 1rem; }
+      .top-nav .nav-brand { font-size: 0.92rem; }
+      .nav-toggle { display: inline-flex; }
+      .top-nav nav {
+        display: none;
+        position: absolute;
+        top: calc(var(--nav-h) + 8px);
+        right: 1rem;
+        width: min(78vw, 300px);
+        flex-direction: column;
+        gap: 0.2rem;
+        background: color-mix(in oklab, var(--surface) 92%, black);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.6rem;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.28);
+      }
+      .top-nav nav a {
+        padding: 0.55rem 0.65rem;
+        border-radius: calc(var(--radius) * 0.6);
+      }
+      .top-nav nav a:hover {
+        background: var(--accent-dim);
+      }
+      .top-nav nav a::after { display: none; }
       section { padding: 3rem 1.5rem; }
       footer { margin-left: 0 !important; padding: 1.25rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr !important; }
+      .about-photo-frame {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+      }
+      .about-photo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
       body.style-c .about-grid { direction: ltr; }
       .card { width: 100% !important; }
       body.style-b .card-inner { flex-direction: column !important; height: auto !important; }
       body.style-b .card-image-area { width: 100% !important; height: 140px !important; }
       body.style-b #cards { gap: 0; }
+      .exp-entry { padding: 1.4rem 0 1.4rem 1.2rem; }
+      .exp-entry::before { top: 1.75rem; }
+      .exp-project { padding: 0.9rem 1rem; }
+      .contact-link {
+        width: 100%;
+        justify-content: center;
+      }
+      .modal-content {
+        width: calc(100% - 1.2rem);
+        max-height: 92vh;
+      }
+      .modal-image-area { height: 180px; }
+      .modal-info { padding: 1rem 1rem 1.2rem; }
+      .modal-info h3 { font-size: 1.15rem; }
+    }
+
+    @media (max-width: 420px) {
+      section { padding: 2.5rem 1rem; }
+      .skills-grid { gap: 0.7rem; }
+      .skill-tags span { font-size: 0.68rem; }
+      .card-body { padding: 0.95rem 0.95rem 1.05rem; }
+      footer { padding: 1rem; }
     }
   </style>
 </head>
@@ -839,7 +946,10 @@
   <!-- TOP NAV — Styles B & C -->
   <header class="top-nav">
     <a href="#about" class="nav-brand"><span class="nav-typing">Amari Stewart</span></a>
-    <nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav id="site-nav">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -854,8 +964,8 @@
     <section id="about">
       <span class="section-label reveal">About me</span>
       <div class="about-grid">
-        <div class="about-photo reveal reveal-delay-1" style="height: 220px">
-          <img src="assets/HeadshotSquare.jpg" alt="Amari Stewart" style="object-fit: fill; width: 220px; height: 220px">
+        <div class="about-photo about-photo-frame reveal reveal-delay-1">
+          <img src="assets/HeadshotSquare.jpg" alt="Amari Stewart">
         </div>
         <div class="about-text reveal reveal-delay-2">
           <h2>Hi, I'm Amari!</h2>
@@ -1139,6 +1249,36 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Mobile nav toggle ──────────────────────
+    const navToggle = document.querySelector('.nav-toggle');
+    const topNavLinks = document.getElementById('site-nav');
+    if (navToggle && topNavLinks) {
+      const closeMobileMenu = () => {
+        topNavLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = topNavLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      topNavLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) closeMobileMenu();
+      });
+
+      document.addEventListener('click', e => {
+        if (window.innerWidth > 768) return;
+        if (!topNavLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+    }
 
     // ── Cursor spotlight ───────────────────────
     const spotlight = document.getElementById('cursor-spotlight');
