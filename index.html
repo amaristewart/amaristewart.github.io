@@ -159,7 +159,7 @@
       vertical-align: middle;
       border-right: 1.5px solid var(--accent);
       width: 0;
-      animation: typeout 2s steps(13) forwards 0.3s, blink 0.9s step-end infinite;
+      animation: typeout 2s steps(14) forwards 0.3s, blink 0.9s step-end infinite;
     }
     /* Static name for non-A styles */
     body:not(.style-a) .nav-brand .nav-typing {
@@ -887,6 +887,10 @@
       section { padding: 3rem 1.5rem; }
       footer { margin-left: 0 !important; padding: 1.25rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr !important; }
+      body.style-a .about-grid .about-photo,
+      body.style-c .about-grid .about-photo { order: 1; }
+      body.style-a .about-grid .about-text,
+      body.style-c .about-grid .about-text { order: 2; }
       .about-photo-frame {
         width: 180px;
         height: 180px;
@@ -965,7 +969,7 @@
       <span class="section-label reveal">About me</span>
       <div class="about-grid">
         <div class="about-photo about-photo-frame reveal reveal-delay-1">
-          <img src="assets/HeadshotSquare.jpg" alt="Amari Stewart">
+          <img src="assets/HeadshotCircle.png" alt="Amari Stewart">
         </div>
         <div class="about-text reveal reveal-delay-2">
           <h2>Hi, I'm Amari!</h2>
